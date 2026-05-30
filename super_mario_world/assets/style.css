@@ -1,0 +1,63 @@
+body {
+    background: #decead;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: #393910;
+}
+
+#container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 100%;
+    font-family: "Century Gothic";
+    font-weight: bold;
+    background-image: url(bg1.png);
+}
+
+h1 {
+    font-family: Arial;
+    font-size: 0.8em;
+}
+
+#contentarea {
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 10px;
+    border: 3px solid #393910;
+    border-radius: 10px;
+
+    min-height: 774px;
+}
+
+#mode > span {
+    font-size: 0.6em;
+    display: block;
+}
+
+#logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#explanation {
+    width: 266px;
+    position: absolute;
+    bottom: 10px;
+    font-size: 0.8em;
+    font-family: Verdana;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.number {
+    color: red;
+}
+
+p {
+    font-size: 0.6em;
+    margin-top: 0;
+    padding-top: 0;
+}

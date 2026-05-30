@@ -1,0 +1,9 @@
+{
+  "pluginType": {
+    "language": "lua",
+    "version": 1
+  },
+  "name": "Super Mario World Plugin",
+  "slug": "/smw",
+  "script": "plugin.lua"
+}
