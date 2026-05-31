@@ -7,6 +7,8 @@ The client plugin is intended to be run in [BizHawk](https://github.com/TASEmula
 
 # Usage
 
+**Designed for the North American ROM, v1.0**
+
 - Ensure the URL in `client.lua` points to the dormin server you configured
 - Copy/Move the contents of this directory into the plugin directory you configured in dormin
 - Start the dormin server
