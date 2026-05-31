@@ -47,6 +47,7 @@ end
 local wram_domain = find_wram_domain()
 
 -- WRAM address offsets
+-- See: https://www.smwcentral.net/?p=memorymap&game=smw&u=0&address&sizeOperation=%3D&sizeValue&region[]=ram&type=*&description
 local ADDR_LIVES  = 0x0DBE
 local ADDR_COINS  = 0x0DBF
 local ADDR_SCORE  = 0x0F34 -- 3 bytes
