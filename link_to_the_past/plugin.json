@@ -1,0 +1,9 @@
+{
+  "pluginType": {
+    "language": "lua",
+    "version": 1
+  },
+  "name": "Zelda: A Link to the Past Japanese Viewer",
+  "slug": "/lttp",
+  "script": "plugin.lua"
+}
