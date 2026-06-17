@@ -32,21 +32,10 @@ local function post_event(payload)
     os.execute(cmd)
 end
 
--- Memory Domain Detection
-local function find_wram_domain()
-    local domains = memory.getmemorydomainlist()
-    local lower = {}
-    for _, d in ipairs(domains) do lower[string.lower(d)] = d end
-    local candidates = { "wram", "wram0", "system bus", "systembus", "cpu bus", "bus", "mainram", "work ram" }
-    for _, name in ipairs(candidates) do
-        if lower[name] then return lower[name] end
-    end
-    return domains[1]
-end
-
-local wram_domain = find_wram_domain()
+local WRAM_DOMAIN = "WRAM"
 
 -- WRAM address offsets
+-- See: https://www.smwcentral.net/?p=memorymap&game=smw&u=0&address&sizeOperation=%3D&sizeValue&region[]=ram&type=*&description
 local ADDR_LIVES  = 0x0DBE
 local ADDR_COINS  = 0x0DBF
 local ADDR_SCORE  = 0x0F34 -- 3 bytes
@@ -54,29 +43,29 @@ local ADDR_LEVEL  = 0x13BF
 local ADDR_MODE   = 0x0100
 
 local function get_score()
-    local b1 = memory.readbyte(ADDR_SCORE, wram_domain) or 0
-    local b2 = memory.readbyte(ADDR_SCORE + 1, wram_domain) or 0
-    local b3 = memory.readbyte(ADDR_SCORE + 2, wram_domain) or 0
+    local b1 = memory.readbyte(ADDR_SCORE, WRAM_DOMAIN) or 0
+    local b2 = memory.readbyte(ADDR_SCORE + 1, WRAM_DOMAIN) or 0
+    local b3 = memory.readbyte(ADDR_SCORE + 2, WRAM_DOMAIN) or 0
     return b1 + b2 * 256 + b3 * 65536
 end
 
 -- Initialize state variables
-local prev_lives = memory.readbyte(ADDR_LIVES, wram_domain)
-local prev_coins = memory.readbyte(ADDR_COINS, wram_domain)
+local prev_lives = memory.readbyte(ADDR_LIVES, WRAM_DOMAIN)
+local prev_coins = memory.readbyte(ADDR_COINS, WRAM_DOMAIN)
 local prev_score = get_score()
 local prev_level = -1
 local prev_mode  = -1
 
-console.log("SMW RAM Polling Client started. Domain: " .. wram_domain)
+console.log("SMW RAM Polling Client started. Domain: " .. WRAM_DOMAIN)
 
 while true do
     emu.frameadvance()
 
-    local cur_lives = memory.readbyte(ADDR_LIVES, wram_domain)
-    local cur_coins = memory.readbyte(ADDR_COINS, wram_domain)
+    local cur_lives = memory.readbyte(ADDR_LIVES, WRAM_DOMAIN)
+    local cur_coins = memory.readbyte(ADDR_COINS, WRAM_DOMAIN)
     local cur_score = get_score()
-    local cur_level = memory.readbyte(ADDR_LEVEL, wram_domain)
-    local cur_mode  = memory.readbyte(ADDR_MODE, wram_domain)
+    local cur_level = memory.readbyte(ADDR_LEVEL, WRAM_DOMAIN)
+    local cur_mode  = memory.readbyte(ADDR_MODE, WRAM_DOMAIN)
 
     -- Detect changes and POST events
     if cur_coins > prev_coins then

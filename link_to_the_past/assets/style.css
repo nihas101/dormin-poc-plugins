@@ -1,0 +1,136 @@
+body {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+#container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    border: 3px solid white;
+    border-radius: 6px;
+    padding: 25px;
+
+    background: -webkit-linear-gradient(
+        top,
+        #004c1e 0%,
+        #001c09 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+}
+
+.hidden {
+    display: none;
+}
+
+/* ------------------------------------------------------------------- */
+
+#messagearea {
+}
+
+#scriptarea {
+    font-family: "MS Gothic";
+    font-weight: bold;
+    font-size: 2.2em;
+    line-height: 1.2em;
+    margin-top: 0px;
+}
+
+#scriptarea br {
+}
+
+#scriptarea .character {
+    color: yellow !important;
+}
+
+#scriptarea .place {
+    color: yellow !important;
+}
+
+#scriptarea .keyword {
+    color: yellow !important;
+}
+
+#scriptarea .highlight {
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 1.4em;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: yellow;
+    border-bottom: 2px dotted yellow;
+}
+
+#scriptarea > .highlight > .highlight {
+    color: lime;
+    border-bottom: 2px dotted lime;
+}
+
+#scriptarea > .highlight > .highlight > .highlight {
+    color: purple;
+    border-bottom: 2px dotted purple;
+}
+
+#scriptarea .notext {
+    font-style: italic;
+    color: #aaaaaa;
+    font-size: 0.8em;
+    text-align: center;
+    margin: auto 0;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: Arial;
+}
+
+#devarea {
+    font-weight: bold;
+    color: yellow;
+    font-size: 1.3em;
+    position: absolute;
+    bottom: 10px;
+}
+
+#error {
+    color: red;
+    margin-top: 1em;
+    font-size: 0.9em;
+}
+
+#error span {
+    color: orange;
+    font-weight: bolder;
+}
+
+.emblem {
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+/* ------------------------------------------------------------------- */
+
+table {
+    max-width: 400px;
+}
+
+td {
+    vertical-align: top;
+    padding-right: 30px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-color: #228822;
+}
