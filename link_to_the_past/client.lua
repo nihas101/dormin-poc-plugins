@@ -38,11 +38,25 @@ end
 
 --
 
-local SNES_TO_SFC_OFFSET = 2; -- the SFC and SNES scripts don't line up perfectly
+local player_name_address = 0x03D8
+local player_name_length = 12
+local function player_name()
+    -- TODO: Depending on the selected slot, we need to offset by 500 bytes
+    local bytes = memory.readbyterange(player_name_address, player_name_length, "CARTRAM")
+    local chars = {}
+    -- http://alttp.run/hacking/index.php?title=SRAM_Map
+    -- 0B00 0800 0D00 0A00 A900 A900
+    -- L .. I .. N .. K ..   ..   ..
+    for i = 1, #bytes, 2 do
+        local b = bytes[i]
+        chars[#chars + 1] = b
+    end
+    return chars
+end
 
+local SNES_TO_SFC_OFFSET = 2; -- the SFC and SNES scripts don't line up perfectly
 local TEXT_ID_LOCATION = 0x01CF0
 
--- TODO: Read and send the player name along?
 local function on_text_loaded()
     local lo = memory.read_u16_le(TEXT_ID_LOCATION, "WRAM")
     local hi = memory.read_u16_be(TEXT_ID_LOCATION + 1, "WRAM")
@@ -54,9 +68,12 @@ local function on_text_loaded()
 
     console.log("Text loaded: " .. tostring(text_id))
 
+    local name = player_name()
+
     post_event({
         type = "text_displayed",
-        text_id = text_id
+        text_id = text_id,
+        player_name = name
     })
 end
 
